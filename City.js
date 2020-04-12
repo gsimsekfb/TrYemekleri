@@ -10,24 +10,7 @@ export default class City extends Component {
     super(props);
     this.state = {
       data: DATA,
-      goBack: false,
     }
-    this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
-  }
-
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
-
-  componentWillUnmount() {    
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
-
-  handleBackButtonClick() {
-    return true;
-  }
-  
-  onPress = () => {
   }
 
   render() {

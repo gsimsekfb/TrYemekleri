@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, SectionList } from 'react-native';
+import { 
+  StyleSheet, Text, View, TouchableOpacity, Image, SectionList 
+} from 'react-native';
 
 export default class HomeScreen extends Component {
 
@@ -11,6 +13,7 @@ export default class HomeScreen extends Component {
   }
 
   onPress = () => {
+    this.props.navigation.navigate('City', {city: 'Adana'});
   }
 
   render() { 
