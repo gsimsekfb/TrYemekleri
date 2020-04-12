@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, SectionList } from 'react-native';
 
-export default class App extends Component {
+export default class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      data: DATA
+      data: DATA,
     }
   }
-  render() {
+
+  onPress = () => {
+  }
+
+  render() { 
     return (
       <View style={styles.container}>
         <SectionList
@@ -25,7 +29,7 @@ export default class App extends Component {
           }}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity style={styles.itemContainer} onPress={() => {}}>
+              <TouchableOpacity style={styles.itemContainer} onPress={this.onPress}>
                 <Image style={styles.itemImage} source={{uri: item.image}}/>
                 <Text style={styles.itemText}>{item.key}</Text>
               </TouchableOpacity>
