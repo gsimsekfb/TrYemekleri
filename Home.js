@@ -3,17 +3,20 @@ import {
   StyleSheet, Text, View, TouchableOpacity, Image, SectionList 
 } from 'react-native';
 
+import db from './db';
+
 export default class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       data: DATA,
-    }
+    };
+    // this.gotoCity();
   }
 
-  onPress = () => {
-    this.props.navigation.navigate('City', {city: 'Adana'});
+  gotoCity = (city) => {
+    this.props.navigation.navigate('City', {city: city});
   }
 
   render() { 
@@ -32,7 +35,7 @@ export default class HomeScreen extends Component {
           }}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity style={styles.itemContainer} onPress={this.onPress}>
+              <TouchableOpacity style={styles.itemContainer} onPress={() => this.gotoCity(item.key)}>
                 <Image style={styles.itemImage} source={{uri: item.image}}/>
                 <Text style={styles.itemText}>{item.key}</Text>
               </TouchableOpacity>
@@ -95,13 +98,21 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
 });
+
+
  
 const DATA = [
   {
     title:"A", 
     data:[
-      {key:'Adana', image:"https://i.pinimg.com/originals/f5/87/a8/f587a8486a11272b8d9854d7830e95bf.jpg"},
-      {key:'Ankara', image:"https://lezzetler.com/images/yuklenen4/beypazari-guveci-145600.jpg"},
+      { 
+        key:'Adana', 
+        image:"https://i.pinimg.com/originals/f5/87/a8/f587a8486a11272b8d9854d7830e95bf.jpg",
+      },
+      { 
+        key:'Ankara', 
+        image:"https://lezzetler.com/images/yuklenen4/beypazari-guveci-145600.jpg",
+      },
       {key:'Aydin', image:"https://cdn.yemek.com/uploads/2016/05/keskek-aydin.jpg"},
     ]
   },

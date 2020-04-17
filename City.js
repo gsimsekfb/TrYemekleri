@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { 
-  StyleSheet, Text, View, TouchableOpacity, Image, SectionList, BackHandler,
+  StyleSheet, View, Text, TouchableOpacity, Image, FlatList,
   Dimensions,  
 } from 'react-native';
 
@@ -14,31 +14,23 @@ export default class City extends Component {
   }
 
   render() {
+    // console.log('--- iii: ');
+    // console.log(this.props.route.params);
+
     return (
       <View style={styles.container}>
-        <SectionList
-          sections={this.state.data}
-          renderSectionHeader={({section}) => {
-            return (
-              <View style={styles.titleContainer}>
-                <Text style={styles.title}>
-                  {section.title}
-                </Text>
-              </View>
-            )
-          }}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity style={styles.itemContainer} onPress={() => {}}>
-                <Text style={styles.itemTitle}>{item.key}</Text>
-                <Text style={styles.itemDesc}>{item.desc}</Text>
-                <Image style={styles.itemImage} width={200} source={{uri: item.image}}/>
-              </TouchableOpacity>
-            )
-          }}
+        <FlatList
+          data={DATA}
           ItemSeparatorComponent={ () => 
-              <View style={{height: 6, width: '100%', backgroundColor: '#C8C8C8'}}/>
-           }
+            <View style={{height: 6, width: '100%', backgroundColor: '#C8C8C8'}}/>
+          }
+          renderItem={({item}) => 
+            <TouchableOpacity style={styles.itemContainer} onPress={() => {}}>
+              <Text style={styles.itemTitle}>{item.key}</Text>
+              <Text style={styles.itemDesc}>{item.desc}</Text>
+              <Image style={styles.itemImage} source={item.image} />
+            </TouchableOpacity>          
+          }
         />
       </View>
     );
@@ -64,13 +56,16 @@ const styles = StyleSheet.create({
   itemContainer: {    
     marginVertical: 4,
     padding: 10,
-    alignItems: 'flex-start',
+    // alignItems: 'flex-start',
     // backgroundColor: '#fff2cc'
   },    
   itemImage:{
-    width: '100%',
-    height: 300,
-    borderRadius:4,
+    resizeMode: 'contain',    
+    width: 400,
+    height: 280,
+    borderRadius: 4,
+    marginVertical: 4,
+    // backgroundColor: 'red'
   },  
   itemTitle: {
     textAlignVertical: 'center',
@@ -85,18 +80,28 @@ const styles = StyleSheet.create({
  
 const DATA = [
   {
-    title:"ADANA", 
-    data:[
-      {
-        key:'Adana Kebab', 
-        desc:'xyz asdasd asdasdsada sad asda sdas dasdasd asd asd asd asda sdas dasd asd', 
-        image:"https://i.pinimg.com/originals/f5/87/a8/f587a8486a11272b8d9854d7830e95bf.jpg"
-      },
-      { 
-        key:'yy', 
-        desc:'Adana Kebab', 
-        image:"https://lezzetler.com/images/yuklenen4/beypazari-guveci-145600.jpg"
-      }      
-    ]
+    key:'Adana Kebab', 
+    desc:'xyz asdasd asdasdsada sad asda sdas dasdasd asd asd asd asda sdas dasd asd', 
+    image: require('./src/images/adana/kebap.jpg')
   },
+  { 
+    key:'Kofte', 
+    desc:'asdasd asdasdad adsas dasdasd asdasd asd adsa sd asdas dadsasdasdasd sadsadas dasdasd ', 
+    image: require('./src/images/adana/kofte.jpg')
+  }      
+  // {
+  //   title:"Ankara", 
+  //   data:[
+  //     {
+  //       key:'Beypazarı Güveci', 
+  //       desc:'xyz asdasd asdasdsada sad asda sdas dasdasd asd asd asd asda sdas dasd asd', 
+  //       image: require('./src/images/ankara/beypazari-guveci.jpg')
+  //     },
+  //     { 
+  //       key:'Tava', 
+  //       desc:'asdasd asdasdad adsas dasdasd asdasd asd adsa sd asdas dadsasdasdasd sadsadas dasdasd ', 
+  //       image: require('./src/images/ankara/tava.jpg')
+  //     }      
+  //   ]
+  // },  
 ];
